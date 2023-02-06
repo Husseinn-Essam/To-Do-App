@@ -1,0 +1,10 @@
+$blue: #0284c7;
+$dark: #334155;
+$light: #f8fafc;
+$grey: #cbd5e1;
+@mixin blueFilter {
+    filter: invert(59%) sepia(90%) saturate(7465%) hue-rotate(183deg) brightness(101%) contrast(105%);
+}
+@mixin lightFilter {
+    filter: invert(83%) sepia(4%) saturate(622%) hue-rotate(172deg) brightness(106%) contrast(86%);
+}
