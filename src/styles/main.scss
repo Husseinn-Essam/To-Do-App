@@ -1,5 +1,6 @@
 @import "colors";
 @import "task";
+@import "modal";
 *{
     margin: 0;
     padding: 0;
@@ -9,6 +10,7 @@
 
 .container{
     display: grid;
+    position: relative;
     grid-template-columns: 260px 3fr;
     grid-template-rows: 0.5fr 4fr;
     height: 100vh;
@@ -80,5 +82,22 @@
            
         }
 
+    }
+}
+.add-task{
+    position: fixed;
+    position: absolute;
+    top: 82%;
+    left: 20px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: $primary;
+    color: $light;
+    font-size: 2.6rem;
+    &:hover{
+        opacity: 0.7;
     }
 }

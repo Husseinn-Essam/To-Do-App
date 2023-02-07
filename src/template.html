@@ -15,7 +15,7 @@
       <div class="sidebar">
         <div class="inbox">
           <h2>Inbox</h2>
-          <button class="home"><i class="fa-solid fa-pen-to-square"></i> Home </button>
+          <button class="home"><i class="fa-solid fa-house"></i> Home </button>
           <button class="today"><i class="fa-sharp fa-solid fa-calendar-day"></i>Today</button>
           <button class="week"><i class="fa-solid fa-calendar-week"></i>This Week</button>
         </div>
@@ -28,6 +28,7 @@
         </div>
       </div>
       <div class="list">
+        
         <div class="task">
           <div class="info">
             <input type="checkbox" name="done" id="done">
@@ -42,7 +43,24 @@
           
         </div>
       </div>
+      <div class="modal">
+        <div class="modal-content">
+          <h1 class="modal-title">Add a Task</h1>
+         <div class="input">
+          <input type="text" name="title" id="title" placeholder="Title: Cook dinner">
+          <textarea name="details-txt" id="details-txt" cols="30" rows="10" placeholder="Details: Prepare the noodles"></textarea>
+          <div class="date-area">
+            <label for="task-date">Task Date</label>
+            <input type="date" name="task-date" id="task-date">
+          </div>
+          <button class="submit">Add Task</button>
+         </div>
+
+        </div>
+      </div>
+      <button class="add-task"><i class="fa-solid fa-plus"></i></button>
     </div>
+
 
   </body>
 </html>
