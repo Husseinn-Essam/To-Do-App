@@ -1,0 +1,91 @@
+.list{
+    background-color: $grey;
+    grid-row: 2;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    .task{
+        background-color: $light;
+        display: flex;
+        padding: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        border-radius: 5px;
+        &:hover{
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            transition: 1s;
+        }
+        .info{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            font-size: 1.4rem;
+            align-items: center;
+            .title{
+                margin-bottom: 7px;
+            }
+            input{
+                -webkit-appearance: none;
+                appearance: none;
+                background-color: #fff;
+                margin: 0;
+                font: inherit;
+                color: currentColor;
+                width: 1.15em;
+                height: 1.15em;
+                border: 0.15em solid currentColor;
+                border-radius: 0.15em;
+                transform: translateY(-0.075em);
+                display: grid;
+                place-content: center;
+                cursor: pointer;
+                &::before{
+                    content: "";
+                    width: 0.65em;
+                    height: 0.65em;
+                    transform: scale(0);
+                    transition: 120ms transform ease-in-out;
+                    box-shadow: inset 1em 1em $primary;
+                    transform-origin: bottom left;
+                    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+                }
+                &:checked::before{
+                    transform: scale(1);
+                }
+            }
+        }
+        .actions{
+            display: flex;
+            flex-direction: row;
+            gap:20px;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            button{
+                cursor: pointer;
+                font-size: 1.2rem;
+                
+            }
+            .details{
+                background-color: $primary;
+                color: $light;
+                border: none;
+                padding: 5px;
+                border-radius: 5px;
+                font-weight: 700;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+            .edit , .delete{
+                background-color: transparent;
+                border: none;
+                font-size: 1.3rem;
+                &:hover{
+                    color: $primary;
+                }
+            }
+        }
+    }
+}

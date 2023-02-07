@@ -4,22 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/0e96e41433.js" crossorigin="anonymous"></script>
     <title>To Do App</title>
   </head>
   <body>
     <div class="container">
       <div class="header">
-        <h1>To Do App</h1>
+        <h1>To Do App<i class="fa-solid fa-check-double"></i></h1>
       </div>
       <div class="sidebar">
         <div class="inbox">
-          <button class="home">Home</button>
-          <button class="today">Today</button>
-          <button class="week">This Week</button>
+          <h2>Inbox</h2>
+          <button class="home"><i class="fa-solid fa-pen-to-square"></i> Home </button>
+          <button class="today"><i class="fa-sharp fa-solid fa-calendar-day"></i>Today</button>
+          <button class="week"><i class="fa-solid fa-calendar-week"></i>This Week</button>
         </div>
+        <div class="divider"></div>
         <div class="projects">
+          <h2>Projects</h2>
           <button class="addProject">
-            Add Project
+            <i class="fa-solid fa-list-check"></i> Add Project
           </button>  
         </div>
       </div>
@@ -32,12 +36,13 @@
           <div class="actions">
             <button class="details">Details</button>
             <div class="date">N.D.</div>
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
+            <button class="edit"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="delete"><i class="fa-solid fa-trash"></i></button>
           </div>
           
         </div>
       </div>
     </div>
+
   </body>
 </html>
