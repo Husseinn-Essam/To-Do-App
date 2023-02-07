@@ -1,5 +1,8 @@
-import { isToday,isThisWeek } from "date-fns";
+import {
+  isToday, isThisWeek,
+} from "date-fns";
 import project from "./project";
+import task from "./task";
 
 const toDolist = (function () {
   const home = project("Home");
@@ -13,26 +16,28 @@ const toDolist = (function () {
     const index = projects.indexOf(aproject);
     projects.splice(index, 1);
   }
-  function getTodayProjects() {
+  function getTodayTasks() {
     today.tasks = [];
+
     for (let i = 0; i < projects.length; i++) {
-      if (projects[i] !== today || projects[i] !== week) {
+      if (projects[i] !== today && projects[i] !== week) {
         const currentTasks = projects[i].tasks;
         for (let j = 0; j < currentTasks.length; j++) {
-          if (isToday(currentTasks[j].date)) {
+          const tasksDate = new Date(currentTasks[j].date);
+          if (isToday(tasksDate)) {
             today.tasks.push(currentTasks[j]);
           }
         }
       }
     }
   }
-  function getWeekProjects(){
+  function getWeekTasks() {
     week.tasks = [];
     for (let i = 0; i < projects.length; i++) {
-      if (projects[i] !== today || projects[i] !== week) {
+      if (projects[i] !== today && projects[i] !== week) {
         const currentTasks = projects[i].tasks;
         for (let j = 0; j < currentTasks.length; j++) {
-          if (isThisWeek(currentTasks[j].date)) {
+          if (isThisWeek(new Date(currentTasks[j].date))) {
             week.tasks.push(currentTasks[j]);
           }
         }
@@ -43,8 +48,11 @@ const toDolist = (function () {
     addProject,
     removeProject,
     projects,
-    getTodayProjects,
-    getWeekProjects
+    getTodayTasks,
+    getWeekTasks,
+    home,
+    today,
+    week,
   };
 }());
 export default toDolist;

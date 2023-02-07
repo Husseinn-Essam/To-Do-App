@@ -4,12 +4,11 @@
         "es2021": true
     },
     "extends": "airbnb-base",
-    "overrides": [
-    ],
+   
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
-    },"plugins": ["date-fns"],
+    },
     "rules": {
     "no-unused-vars": "warn",
     "quotes":"off",
@@ -20,4 +19,4 @@
     "class-methods-use-this": "off",
     "no-plusplus" : "off"
     }
-}
+} 
