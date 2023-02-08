@@ -4,6 +4,7 @@ import project from './project';
 
 const displayContoller = (function () {
   let selectedProject = toDolist.home;
+  let theIndexOfEdited; 
   // rendering tasks
   function createTaskCard(title, date,checked) {
     const list = document.querySelector('.tasks');
@@ -25,13 +26,14 @@ const displayContoller = (function () {
     const list = document.querySelector('.tasks');
     list.textContent='';
   }
-  function renderProjectTasks() {
+  function renderProjectTasks(j) {
     resetList();
     for (let i = 0; i < selectedProject.tasks.length; i++) {
       createTaskCard(selectedProject.tasks[i].title, selectedProject.tasks[i].date,selectedProject.tasks[i].checked);
     }
     editTaskBtn();
     deleteTask();
+    openTaskDetails();
   }
   // rendering Created Projects
   function createProjectUI(projectTitle) {
@@ -71,6 +73,7 @@ const displayContoller = (function () {
   function openModal() {
     const addTask = document.querySelector('.add-task');
     const modal = document.querySelector('.modal');
+    const detailsModal= document.querySelector('.detailsModal');
     addTask.addEventListener('click', () => {
       modal.style.display = 'flex';
     });
@@ -78,6 +81,7 @@ const displayContoller = (function () {
     window.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.style.display = 'none';
+        detailsModal.style.display='none';
       }
     });
   }
@@ -111,6 +115,7 @@ const displayContoller = (function () {
       addProjectToList();
       renderCreatedProjects();
       removeProject();
+      openTaskDetails();
       console.log(toDolist.projects);
     });
   }
@@ -180,30 +185,56 @@ const displayContoller = (function () {
   function editTaskBtn(){
     const editTaskBtn= document.querySelectorAll('.edit');
     const editModal = document.querySelector('.editTask');
+    for(let i= 0; i<editTaskBtn.length;i++){
+      editTaskBtn[i].addEventListener('click',()=>{
+        editModal.style.display = 'flex';
+        theIndexOfEdited=i;
+      })
+      
+    }
+    
+  }
+  function submitEdit(){
     const editSubmit = document.querySelector('.editBtn');
     const taskTitle = document.querySelector('.editedTitle');
     const details = document.querySelector('.editedDetails');
     const date = document.querySelector('.editedDate');
-    for(let i= 0; i<editTaskBtn.length;i++){
-      editTaskBtn[i].addEventListener('click',()=>{
-        editModal.style.display = 'flex';
-        editSubmit.addEventListener('click',()=>{
-          selectedProject.editTask(selectedProject.tasks[i],taskTitle.value,date.value,details.value);
-          editModal.style.display = 'none';
-          renderProjectTasks();
-          toDolist.getTodayTasks();
-          toDolist.getWeekTasks();
-        })
-      })
-    }
+    const editModal = document.querySelector('.editTask');
+    editSubmit.addEventListener('click',()=>{
+      
+      selectedProject.editTask(selectedProject.tasks[theIndexOfEdited],taskTitle.value,date.value,details.value);
+      editModal.style.display = 'none';
+      toDolist.getTodayTasks();
+      toDolist.getWeekTasks();
+      
+      renderProjectTasks();
+    })
   }
 
+  function openTaskDetails(){
+    const detailsModal = document.querySelector('.detailsModal');
+    const details = document.querySelector('.taskDetails');
+    const showDetailsBtn = document.querySelectorAll('.details');
+    for(let i =0 ;i<showDetailsBtn.length;i++){
+      showDetailsBtn[i].addEventListener('click',()=>{
+        detailsModal.style.display='flex';
+        details.textContent=selectedProject.tasks[i].details;
+      })
+      
+    }
+    window.addEventListener('click', (e) => {
+      if (e.target === detailsModal) {
+        
+        detailsModal.style.display='none';
+      }
+    });
+  }
   function btnEvents() {
     openModal();
     submitTask();
     submitProject();
     setSelectedProject();
-    
+    submitEdit();
   }
 
   function startApp() {

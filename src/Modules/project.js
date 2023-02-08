@@ -8,7 +8,7 @@ const project = (title) => {
     const index = tasks.indexOf(task);
     tasks.splice(index, 1);
   }
-  function editTask(task , Ttitle, Tdate, Tdetails){
+  function editTask( task,Ttitle, Tdate, Tdetails){
     task.title =Ttitle;
     task.date = Tdate;
     task.details = Tdetails;
