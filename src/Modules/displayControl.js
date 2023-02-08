@@ -5,11 +5,11 @@ import project from './project';
 const displayContoller = (function () {
   let selectedProject = toDolist.home;
   // rendering tasks
-  function createTaskCard(title, date) {
+  function createTaskCard(title, date,checked) {
     const list = document.querySelector('.tasks');
     list.innerHTML += `<div class="task">
     <div class="info">
-      <input type="checkbox" name="done" id="done">
+      <input type="checkbox" name="done" id="done" ${checked==true? `checked` : ``}>
       <p class="title">${title}</p>
     </div>
     <div class="actions">
@@ -23,17 +23,12 @@ const displayContoller = (function () {
   }
   function resetList() {
     const list = document.querySelector('.tasks');
-    const tasks = document.querySelectorAll('.task');
-    if (tasks.length !== 0) {
-      for (let i = 0; i < tasks.length; i++) {
-        list.removeChild(tasks[i]);
-      }
-    }
+    list.textContent='';
   }
   function renderProjectTasks() {
     resetList();
     for (let i = 0; i < selectedProject.tasks.length; i++) {
-      createTaskCard(selectedProject.tasks[i].title, selectedProject.tasks[i].date);
+      createTaskCard(selectedProject.tasks[i].title, selectedProject.tasks[i].date,selectedProject.tasks[i].checked);
     }
   }
   // rendering Created Projects
@@ -46,12 +41,7 @@ const displayContoller = (function () {
 
   function resetProjectUI() {
     const projectList = document.querySelector(".project-list");
-    const createdProjects = document.querySelectorAll('.projectWrapper');
-    if (createdProjects.length !== 0) {
-      for (let i = 0; i < createdProjects.length; i++) {
-        projectList.removeChild(createdProjects[i]);
-      }
-    }
+    projectList.textContent='';
   }
 
   function renderCreatedProjects() {
@@ -97,7 +87,7 @@ const displayContoller = (function () {
       toDolist.getTodayTasks();
       toDolist.getWeekTasks();
       renderProjectTasks();
-
+      completeTask();
       console.log(toDolist.projects);
     });
   }
@@ -138,6 +128,7 @@ const displayContoller = (function () {
     selectedProject = toDolist.projects[i];
     setSelectedProjectColor();
     renderProjectTasks();
+    completeTask();
   }
 
   function setSelectedProject() {
@@ -161,7 +152,15 @@ const displayContoller = (function () {
       }
    
   }
-  
+  function completeTask(){
+    const taskCheckbox= document.querySelectorAll("#done");
+    for(let i =0 ;i<taskCheckbox.length;i++){
+      taskCheckbox[i].addEventListener('click',()=>{
+        selectedProject.tasks[i].checked =  true ;
+        console.log(selectedProject.tasks[i]);
+      })
+    }
+  }
   function btnEvents() {
     openModal();
     submitTask();
