@@ -39,13 +39,14 @@ const displayContoller = (function () {
   // rendering Created Projects
   function createProjectUI(projectTitle) {
     const projectList = document.querySelector(".project-list");
-    projectList.innerHTML+=` <button class="project newProject"> <i class="fa-solid fa-list-check"></i>${projectTitle}</button>`
+    projectList.innerHTML+=`<div class="projectWrapper"> <button class="project newProject"> <i class="fa-solid fa-list-check"></i>${projectTitle}</button>
+    <button class='deleteProjectBtn'><i class="fa-sharp fa-solid fa-xmark"></i></button></div>`
     setSelectedProject();
   }
 
   function resetProjectUI() {
     const projectList = document.querySelector(".project-list");
-    const createdProjects = document.querySelectorAll('.newProject');
+    const createdProjects = document.querySelectorAll('.projectWrapper');
     if (createdProjects.length !== 0) {
       for (let i = 0; i < createdProjects.length; i++) {
         projectList.removeChild(createdProjects[i]);
@@ -117,6 +118,7 @@ const displayContoller = (function () {
     submitProjectForm.addEventListener('click', () => {
       addProjectToList();
       renderCreatedProjects();
+      removeProject();
       console.log(toDolist.projects);
     });
   }
@@ -147,6 +149,19 @@ const displayContoller = (function () {
     }
   }
 
+  function removeProject(){
+    const removeProjectBtns = document.querySelectorAll('.deleteProjectBtn');
+    const projectList = document.querySelector(".project-list");
+    const createdProjects = document.querySelectorAll('.projectWrapper');
+      for(let i=0;i<removeProjectBtns.length;i++){
+        removeProjectBtns[i].addEventListener('click',()=>{
+          toDolist.removeProject(toDolist.projects[i+3]);
+          projectList.removeChild(createdProjects[i]);
+        })
+      }
+   
+  }
+  
   function btnEvents() {
     openModal();
     submitTask();
@@ -159,11 +174,8 @@ const displayContoller = (function () {
     setSelectedProjectColor();
   }
   return {
-
     startApp,
-
     selectedProject,
-
   };
 }());
 export default displayContoller;

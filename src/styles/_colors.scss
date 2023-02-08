@@ -3,6 +3,7 @@ $dark: #334155;
 $light: #f8fafc;
 $grey: #cbd5e1;
 $modal:#f0eef1;
+$red:rgb(175, 58, 58);
 @mixin blueFilter {
     filter: invert(59%) sepia(90%) saturate(7465%) hue-rotate(183deg) brightness(101%) contrast(105%);
 }

@@ -119,7 +119,7 @@
             justify-content: center;
         }
         .cancel{
-            background-color: crimson;
+            background-color: $red;
             width: 50%;
             border-radius:5px ;
             justify-content: center;
@@ -132,6 +132,21 @@
             align-items: center;
             overflow: auto;
         }
-       
+        .projectWrapper{
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            gap: 13px;
+            .deleteProjectBtn{
+                background: transparent;
+                font-size: 1.2rem;
+                color: $light;
+                border: none;
+                cursor: pointer;
+                &:hover{
+                    color: $red;
+                }
+            }
+        }
     }
 }
