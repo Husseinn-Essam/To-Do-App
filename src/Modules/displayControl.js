@@ -88,6 +88,7 @@ const displayContoller = (function () {
       toDolist.getWeekTasks();
       renderProjectTasks();
       completeTask();
+      deleteTask();
       console.log(toDolist.projects);
     });
   }
@@ -129,6 +130,7 @@ const displayContoller = (function () {
     setSelectedProjectColor();
     renderProjectTasks();
     completeTask();
+    deleteTask();
   }
 
   function setSelectedProject() {
@@ -158,6 +160,19 @@ const displayContoller = (function () {
       taskCheckbox[i].addEventListener('click',()=>{
         selectedProject.tasks[i].checked =  selectedProject.tasks[i].checked==true? false:true ;
         console.log(selectedProject.tasks[i]);
+      })
+    }
+  }
+  function deleteTask(){
+    const deleteTaskBtn = document.querySelectorAll('.delete');
+    const CreatedTasks = document.querySelectorAll('.task');
+    const tasks = document.querySelector(".tasks")
+    for(let i = 0;i<CreatedTasks.length;i++){
+      deleteTaskBtn[i].addEventListener('click',()=>{
+        selectedProject.removeTask(selectedProject.tasks[i]);
+        tasks.removeChild(CreatedTasks[i]);
+        toDolist.getTodayTasks();
+        toDolist.getWeekTasks();
       })
     }
   }
