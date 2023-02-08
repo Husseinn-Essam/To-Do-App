@@ -156,7 +156,7 @@ const displayContoller = (function () {
     const taskCheckbox= document.querySelectorAll("#done");
     for(let i =0 ;i<taskCheckbox.length;i++){
       taskCheckbox[i].addEventListener('click',()=>{
-        selectedProject.tasks[i].checked =  true ;
+        selectedProject.tasks[i].checked =  selectedProject.tasks[i].checked==true? false:true ;
         console.log(selectedProject.tasks[i]);
       })
     }
