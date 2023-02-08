@@ -6,48 +6,36 @@ const displayContoller = (function () {
   let selectedProject = toDolist.home;
   // rendering tasks
   function createTaskCard(title, date) {
-    const taskCard = document.createElement('div');
-    const taskInfo = document.createElement('div');
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    const taskName = document.createElement('p');
-    const taskActions = document.createElement('div');
-    const taskDetails = document.createElement('button');
-    const taskDate = document.createElement('div');
-    const taskEdit = document.createElement('button');
-    const taskDelete = document.createElement('button');
-    const editIcon = document.createElement('i');
-    const deleteIcon = document.createElement('i');
     const list = document.querySelector('.list');
-    taskCard.classList.add('task');
-    taskInfo.classList.add('info');
-    checkbox.classList.add('done');
-    taskName.classList.add('title');
-    taskActions.classList.add('actions');
-    taskDetails.classList.add('details');
-    taskDate.classList.add('date');
-    taskEdit.classList.add('edit');
-    taskDelete.classList.add('delete');
-    editIcon.classList.add('fa-solid');
-    editIcon.classList.add('fa-pen-to-square');
-    deleteIcon.classList.add('fa-solid');
-    deleteIcon.classList.add('fa-trash');
-    taskName.textContent = title;
-    taskDate.textContent = date;
-    taskDetails.textContent = 'Details';
-    list.appendChild(taskCard);
-    taskCard.appendChild(taskInfo);
-    taskCard.appendChild(taskActions);
-    taskInfo.appendChild(checkbox);
-    taskInfo.appendChild(taskName);
-    taskActions.appendChild(taskDetails);
-    taskActions.appendChild(taskDate);
-    taskActions.appendChild(taskEdit);
-    taskActions.appendChild(taskDelete);
-    taskEdit.appendChild(editIcon);
-    taskDelete.appendChild(deleteIcon);
+    list.innerHTML += `<div class="task">
+    <div class="info">
+      <input type="checkbox" name="done" id="done">
+      <p class="title">${title}</p>
+    </div>
+    <div class="actions">
+      <button class="details">Details</button>
+      <div class="date">${date}</div>
+      <button class="edit"><i class="fa-solid fa-pen-to-square"></i></button>
+      <button class="delete"><i class="fa-solid fa-trash"></i></button>
+    </div>
+    
+  </div>`;
   }
-
+  function resetList() {
+    const list = document.querySelector('.list');
+    const tasks = document.querySelectorAll('.task');
+    if (tasks.length !== 0) {
+      for (let i = 0; i < tasks.length; i++) {
+        list.removeChild(tasks[i]);
+      }
+    }
+  }
+  function renderProjectTasks() {
+    resetList();
+    for (let i = 0; i < selectedProject.tasks.length; i++) {
+      createTaskCard(selectedProject.tasks[i].title, selectedProject.tasks[i].date);
+    }
+  }
   // creating objects
   function addProjectToList() {
     const projectName = document.querySelector('#addProjectTitle');
@@ -59,7 +47,7 @@ const displayContoller = (function () {
     const details = document.querySelector('#details-txt');
     const date = document.querySelector('#task-date');
     selectedProject.addTask(task(taskName.value, date.value, details.value, false));
-    createTaskCard(taskName.value, date.value);
+    // createTaskCard(taskName.value, date.value);
   }
 
   // button events
@@ -83,6 +71,8 @@ const displayContoller = (function () {
       addTaskToProject();
       toDolist.getTodayTasks();
       toDolist.getWeekTasks();
+      renderProjectTasks();
+
       console.log(toDolist.projects);
     });
   }
@@ -120,6 +110,7 @@ const displayContoller = (function () {
   function checkSelectedProject(i) {
     selectedProject = toDolist.projects[i];
     setSelectedProjectColor();
+    renderProjectTasks();
   }
 
   function setSelectedProject() {
@@ -141,7 +132,6 @@ const displayContoller = (function () {
   function startApp() {
     btnEvents();
     setSelectedProjectColor();
-    createTaskCard('ggez', 2);
   }
   return {
 
