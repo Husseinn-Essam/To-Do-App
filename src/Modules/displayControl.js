@@ -1,17 +1,20 @@
-import format from "date-fns/format";
 import toDolist from "./ToDoList";
 import task from "./task";
 import project from "./project";
 
 const displayContoller = (function () {
-  const selectedProject = toDolist.home;
-  function startApp() {
-    displayContoller.btnEvents();
+  let selectedProject = toDolist.home;
+  // creating objects
+  function addProjectToList() {
+    const projectName = document.querySelector("#addProjectTitle");
+    toDolist.addProject(project(projectName.value));
   }
-  function btnEvents() {
-    displayContoller.openModal();
-    displayContoller.submitTask();
-    displayContoller.submitProject();
+
+  function addTaskToProject() {
+    const taskName = document.querySelector("#title");
+    const details = document.querySelector("#details-txt");
+    const date = document.querySelector("#task-date");
+    selectedProject.addTask(task(taskName.value, date.value, details.value, false));
   }
   // button events
   function openModal() {
@@ -27,15 +30,17 @@ const displayContoller = (function () {
       }
     });
   }
+
   function submitTask() {
     const submitTaskBtn = document.querySelector(".submit");
     submitTaskBtn.addEventListener('click', () => {
-      displayContoller.addTaskToProject();
+      addTaskToProject();
       toDolist.getTodayTasks();
       toDolist.getWeekTasks();
       console.log(toDolist.projects);
     });
   }
+
   function submitProject() {
     const addProjectBtn = document.querySelector(".addProject");
     const addProjectForm = document.querySelector(".addProjectForm");
@@ -50,29 +55,52 @@ const displayContoller = (function () {
       addProjectForm.style.display = 'none';
     });
     submitProjectForm.addEventListener('click', () => {
-      displayContoller.addProjectToList();
+      addProjectToList();
     //   console.log(toDolist.projects);
     });
   }
-  function addProjectToList() {
-    const projectName = document.querySelector("#addProjectTitle");
-    toDolist.addProject(project(projectName.value));
+
+  function setSelectedProjectColor() {
+    const uiProjects = document.querySelectorAll(".project");
+    for (let i = 0; i < toDolist.projects.length; i++) {
+      if (selectedProject === toDolist.projects[i]) {
+        uiProjects[i].style.color = "#007fff";
+      } else {
+        uiProjects[i].style.color = "#f8fafc";
+      }
+    }
   }
-  function addTaskToProject() {
-    const taskName = document.querySelector("#title");
-    const details = document.querySelector("#details-txt");
-    const date = document.querySelector("#task-date");
-    // example
-    selectedProject.addTask(task(taskName.value, date.value, details.value, false));
+
+  function checkSelectedProject(i) {
+    selectedProject = toDolist.projects[i];
+    setSelectedProjectColor();
+  }
+
+  function setSelectedProject() {
+    const uiProjects = document.querySelectorAll(".project");
+    for (let i = 0; i < toDolist.projects.length; i++) {
+      uiProjects[i].addEventListener('click', () => {
+        checkSelectedProject(i);
+      });
+    }
+  }
+
+  // rendering tasks
+
+  function btnEvents() {
+    openModal();
+    submitTask();
+    submitProject();
+    setSelectedProject();
+  }
+  function startApp() {
+    btnEvents();
+    setSelectedProjectColor();
   }
   return {
-    btnEvents,
-    openModal,
-    submitTask,
-    submitProject,
-    addTaskToProject,
+
     startApp,
-    addProjectToList,
+
     selectedProject,
 
   };

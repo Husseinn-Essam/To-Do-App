@@ -45,7 +45,7 @@
         width: 100%;
         background-color: #f8fafc;
     }
-    button{
+    .project{
         background-color: transparent;
         display: flex;
         flex-direction: row;
@@ -59,7 +59,9 @@
         }
         i{
             padding: 10px;
+            
         }
+       
     }
     .inbox{
         display: flex;
@@ -80,6 +82,9 @@
         h2{
             font-size: 1.7rem;
            
+        }
+        .addProject{
+            @extend .project;
         }
         .addProjectForm{
             display: none;

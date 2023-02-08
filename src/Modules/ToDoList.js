@@ -2,7 +2,6 @@ import {
   isToday, isThisWeek,
 } from "date-fns";
 import project from "./project";
-import task from "./task";
 
 const toDolist = (function () {
   const home = project("Home");
