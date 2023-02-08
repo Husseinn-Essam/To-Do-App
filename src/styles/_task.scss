@@ -6,6 +6,23 @@
     flex-direction: column;
     padding: 30px;
     gap:10px;
+    .add-task{
+        background-color: transparent;
+        font-size: 2rem;
+        font-weight: 700;
+        color: $dark;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            color: $primary;
+        }
+    }
+    .tasks{
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        gap:10px;
+    }
     .task{
         background-color: $light;
         display: flex;

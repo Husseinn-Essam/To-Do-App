@@ -124,24 +124,14 @@
             border-radius:5px ;
             justify-content: center;
         }
-        
-
-    }
-}
-.add-task{
-    position: fixed;
-    position: absolute;
-    top: 82%;
-    left: 20px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    background-color: $primary;
-    color: $light;
-    font-size: 2.6rem;
-    &:hover{
-        opacity: 0.7;
+        .project-list{
+            max-height: 200px;
+            width: 200px;
+            display: flex ;
+            flex-direction: column;
+            align-items: center;
+            overflow: auto;
+        }
+       
     }
 }

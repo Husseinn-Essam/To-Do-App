@@ -6,7 +6,7 @@ const displayContoller = (function () {
   let selectedProject = toDolist.home;
   // rendering tasks
   function createTaskCard(title, date) {
-    const list = document.querySelector('.list');
+    const list = document.querySelector('.tasks');
     list.innerHTML += `<div class="task">
     <div class="info">
       <input type="checkbox" name="done" id="done">
@@ -22,7 +22,7 @@ const displayContoller = (function () {
   </div>`;
   }
   function resetList() {
-    const list = document.querySelector('.list');
+    const list = document.querySelector('.tasks');
     const tasks = document.querySelectorAll('.task');
     if (tasks.length !== 0) {
       for (let i = 0; i < tasks.length; i++) {
@@ -36,6 +36,30 @@ const displayContoller = (function () {
       createTaskCard(selectedProject.tasks[i].title, selectedProject.tasks[i].date);
     }
   }
+  // rendering Created Projects
+  function createProjectUI(projectTitle) {
+    const projectList = document.querySelector(".project-list");
+    projectList.innerHTML+=` <button class="project newProject"> <i class="fa-solid fa-list-check"></i>${projectTitle}</button>`
+    setSelectedProject();
+  }
+
+  function resetProjectUI() {
+    const projectList = document.querySelector(".project-list");
+    const createdProjects = document.querySelectorAll('.newProject');
+    if (createdProjects.length !== 0) {
+      for (let i = 0; i < createdProjects.length; i++) {
+        projectList.removeChild(createdProjects[i]);
+      }
+    }
+  }
+
+  function renderCreatedProjects() {
+    resetProjectUI();
+    for (let i = 3; i < toDolist.projects.length; i++) {
+      createProjectUI(toDolist.projects[i].title);
+    }
+  }
+
   // creating objects
   function addProjectToList() {
     const projectName = document.querySelector('#addProjectTitle');
@@ -92,7 +116,8 @@ const displayContoller = (function () {
     });
     submitProjectForm.addEventListener('click', () => {
       addProjectToList();
-    //   console.log(toDolist.projects);
+      renderCreatedProjects();
+      console.log(toDolist.projects);
     });
   }
 
@@ -115,7 +140,7 @@ const displayContoller = (function () {
 
   function setSelectedProject() {
     const uiProjects = document.querySelectorAll('.project');
-    for (let i = 0; i < toDolist.projects.length; i++) {
+    for (let i = 0; i < uiProjects.length; i++) {
       uiProjects[i].addEventListener('click', () => {
         checkSelectedProject(i);
       });
