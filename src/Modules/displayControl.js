@@ -130,6 +130,7 @@ const displayContoller = (function () {
     for (let i = 0; i < toDolist.projects.length; i++) {
       if (selectedProject === toDolist.projects[i]) {
         uiProjects[i].style.color = '#007fff';
+       
       } else {
         uiProjects[i].style.color = '#f8fafc';
       }
@@ -193,9 +194,7 @@ const displayContoller = (function () {
     
     for(let i= 0; i<editTaskBtn.length;i++){
       editTaskBtn[i].addEventListener('click',()=>{
-        
         editModal.style.display = 'flex';
-        
         theIndexOfEdited=i;
       })
       
