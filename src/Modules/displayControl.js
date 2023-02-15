@@ -5,6 +5,13 @@ import project from './project';
 const displayContoller = (function () {
   let selectedProject =  toDolist.home;;
   let theIndexOfEdited; 
+  function validate(title){
+    if(title.value==''){
+      alert("must enter task name");
+      return false;
+    }
+    return true;
+  }
   // rendering tasks
   function createTaskCard(title, date,checked) {
     const list = document.querySelector('.tasks');
@@ -65,8 +72,13 @@ const displayContoller = (function () {
     const taskName = document.querySelector('#title');
     const details = document.querySelector('#details-txt');
     const date = document.querySelector('#task-date');
-    selectedProject.addTask(task(taskName.value, date.value, details.value, false));
-    // createTaskCard(taskName.value, date.value);
+    
+    
+    if (validate(taskName)==true){
+
+      selectedProject.addTask(task(taskName.value, date.value, details.value, false));
+    }
+    
   }
 
   // button events
@@ -215,6 +227,7 @@ const displayContoller = (function () {
     const editModalEntry = document.querySelector('.editModal');
     editSubmit.addEventListener('click',(e)=>{
       e.preventDefault();
+      if(validate(taskTitle)==true)
       selectedProject.editTask(selectedProject.tasks[theIndexOfEdited],taskTitle.value,date.value,details.value);
       editModalEntry.reset();
       editModal.style.display = 'none';
