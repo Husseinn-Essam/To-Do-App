@@ -3,7 +3,7 @@ import task from './task';
 import project from './project';
 
 const displayContoller = (function () {
-  let selectedProject = toDolist.home;
+  let selectedProject =  toDolist.home;;
   let theIndexOfEdited; 
   // rendering tasks
   function createTaskCard(title, date,checked) {
@@ -74,12 +74,14 @@ const displayContoller = (function () {
     const addTask = document.querySelector('.add-task');
     const modal = document.querySelector('.modal');
     const detailsModal= document.querySelector('.detailsModal');
+    const modalEntry = document.querySelector('.input')
     addTask.addEventListener('click', () => {
       modal.style.display = 'flex';
     });
     // closing modal
     window.addEventListener('click', (e) => {
       if (e.target === modal) {
+        modalEntry.reset();
         modal.style.display = 'none';
         detailsModal.style.display='none';
       }
@@ -88,7 +90,9 @@ const displayContoller = (function () {
 
   function submitTask() {
     const submitTaskBtn = document.querySelector('.submit');
-    submitTaskBtn.addEventListener('click', () => {
+    
+    submitTaskBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       addTaskToProject();
       toDolist.getTodayTasks();
       toDolist.getWeekTasks();
@@ -122,6 +126,7 @@ const displayContoller = (function () {
 
   function setSelectedProjectColor() {
     const uiProjects = document.querySelectorAll('.project');
+
     for (let i = 0; i < toDolist.projects.length; i++) {
       if (selectedProject === toDolist.projects[i]) {
         uiProjects[i].style.color = '#007fff';
@@ -132,7 +137,7 @@ const displayContoller = (function () {
   }
 
   function checkSelectedProject(i) {
-    selectedProject = toDolist.projects[i];
+    selectedProject =toDolist.projects[i];
     setSelectedProjectColor();
     renderProjectTasks();
     completeTask();
@@ -142,7 +147,7 @@ const displayContoller = (function () {
     const uiProjects = document.querySelectorAll('.project');
     for (let i = 0; i < uiProjects.length; i++) {
       uiProjects[i].addEventListener('click', () => {
-        checkSelectedProject(i);
+        checkSelectedProject(i,selectedProject);
       });
     }
   }
@@ -185,14 +190,22 @@ const displayContoller = (function () {
   function editTaskBtn(){
     const editTaskBtn= document.querySelectorAll('.edit');
     const editModal = document.querySelector('.editTask');
+    
     for(let i= 0; i<editTaskBtn.length;i++){
       editTaskBtn[i].addEventListener('click',()=>{
+        
         editModal.style.display = 'flex';
+        
         theIndexOfEdited=i;
       })
       
     }
-    
+    window.addEventListener('click', (e) => {
+      if (e.target === editModal) {
+        
+        editModal.style.display='none';
+      }
+    });
   }
   function submitEdit(){
     const editSubmit = document.querySelector('.editBtn');
@@ -200,9 +213,11 @@ const displayContoller = (function () {
     const details = document.querySelector('.editedDetails');
     const date = document.querySelector('.editedDate');
     const editModal = document.querySelector('.editTask');
-    editSubmit.addEventListener('click',()=>{
-      
+    const editModalEntry = document.querySelector('.editModal');
+    editSubmit.addEventListener('click',(e)=>{
+      e.preventDefault();
       selectedProject.editTask(selectedProject.tasks[theIndexOfEdited],taskTitle.value,date.value,details.value);
+      editModalEntry.reset();
       editModal.style.display = 'none';
       toDolist.getTodayTasks();
       toDolist.getWeekTasks();

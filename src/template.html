@@ -49,23 +49,23 @@
       <div class="modal">
         <div class="modal-content">
           <h1 class="modal-title">Add a Task</h1>
-         <div class="input">
-          <input type="text" name="title" id="title" placeholder="Title: Cook dinner">
-          <textarea name="details-txt" id="details-txt" cols="30" rows="10" placeholder="Details: Prepare the noodles"></textarea>
+         <form class="input">
+          <input type="text" name="title" id="title" placeholder="Title: Cook dinner" >
+          <textarea name="details-txt" id="details-txt" cols="30" rows="10" placeholder="Details: Prepare the noodles" ></textarea>
           <div class="date-area">
             <label for="task-date">Task Date</label>
-            <input type="date" name="task-date" id="task-date">
+            <input type="date" name="task-date" id="task-date" >
           </div>
           <button class="submit">Add Task</button>
           
-         </div>
+        </form>
 
         </div>
       </div>
-      <div class="editTask">
-        <div class="modal-content">
+      <div class="editTask"> 
+        <div class="modal-content ">
           <h1 class="modal-title">Edit a Task</h1>
-         <div class="input">
+         <form class="input editModal" >
           <input type="text" name="title" id="title" class="editedTitle" placeholder="Title: Cook dinner">
           <textarea name="details-txt" id="details-txt"  class="editedDetails" cols="30" rows="10" placeholder="Details: Prepare the noodles"></textarea>
           <div class="date-area">
@@ -74,7 +74,8 @@
           </div>
           <button class="editBtn">Edit Task</button>
           
-         </div>
+         </form> 
+        </div>
       </div>
       
     </div>
