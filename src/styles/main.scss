@@ -1,13 +1,16 @@
 @import "colors";
 @import "task";
 @import "modal";
+@import "mobile";
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serifs;
 }
-
+body{
+    height: 100vh;
+}
 .container{
     display: grid;
     position: relative;
@@ -16,6 +19,7 @@
     height: 100vh;
     overflow: auto
 }
+
 .header{
     background-color: $primary;
     color: $light;
@@ -24,6 +28,12 @@
     display: flex;
     align-items: center;
     gap:70px;
+    justify-content: space-between;
+    .menu{
+        margin-right: 1rem;
+        font-size: 2rem;
+        
+    }
     h1{
         padding: 20px;
         i{
@@ -33,7 +43,7 @@
     }
 
 }
-.sidebar{
+.sidebar,.mobileSideBar{
     background-color: $dark;
     display: flex;
     flex-direction: column;
@@ -150,5 +160,40 @@
                 }
             }
         }
+    }
+}
+.mobileSideBar{
+    display: none;
+}
+@media(max-width:800px)
+{
+    
+    .sidebar{
+        display: none;
+    }
+    .list{
+        grid-column: 1/-1;
+        overflow: auto;
+        height: 100%;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .mobileSideBar{
+        grid-column: 1/-1;
+        z-index: 1;
+        align-items: center;
+    }
+    
+}
+@media(max-width:400px){
+    
+}
+@media(min-width:800px)
+{
+    .menu{
+        display: none;
     }
 }

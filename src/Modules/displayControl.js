@@ -3,8 +3,9 @@ import task from './task';
 import project from './project';
 
 const displayContoller = (function () {
-  let selectedProject =  toDolist.home;;
+  let selectedProject =  toDolist.home;
   let theIndexOfEdited; 
+  ///validate Modal
   function validate(title){
     if(title.value==''){
       alert("must enter task name");
@@ -110,7 +111,7 @@ const displayContoller = (function () {
       toDolist.getWeekTasks();
       renderProjectTasks();
       completeTask();
-      console.log(toDolist.projects);
+      
     });
   }
 
@@ -132,7 +133,7 @@ const displayContoller = (function () {
       renderCreatedProjects();
       removeProject();
       openTaskDetails();
-      console.log(toDolist.projects);
+      
     });
   }
 
@@ -182,7 +183,7 @@ const displayContoller = (function () {
     for(let i =0 ;i<taskCheckbox.length;i++){
       taskCheckbox[i].addEventListener('click',()=>{
         selectedProject.tasks[i].checked =  selectedProject.tasks[i].checked==true? false:true ;
-        console.log(selectedProject.tasks[i]);
+        
       })
     }
   }
@@ -256,12 +257,30 @@ const displayContoller = (function () {
       }
     });
   }
+  function humMenu()
+  {
+    const menuBtn = document.querySelector(".menu");
+    const mobileSidebar = document.querySelector('.mobileSideBar');
+    menuBtn.addEventListener('click',()=>
+    {
+      if(mobileSidebar.style.display == 'flex')
+      {
+        mobileSidebar.style.display = 'none'
+        
+      }
+      else{
+        mobileSidebar.style.display = 'flex'
+      }
+    })
+
+  }
   function btnEvents() {
     openModal();
     submitTask();
     submitProject();
     setSelectedProject();
     submitEdit();
+    humMenu();
   }
 
   function startApp() {
