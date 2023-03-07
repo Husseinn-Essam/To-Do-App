@@ -259,20 +259,21 @@ const displayContoller = (function () {
   }
   function humMenu()
   {
-    const menuBtn = document.querySelector(".menu");
-    const mobileSidebar = document.querySelector('.mobileSideBar');
-    menuBtn.addEventListener('click',()=>
-    {
-      if(mobileSidebar.style.display == 'flex')
-      {
-        mobileSidebar.style.display = 'none'
-        
-      }
-      else{
-        mobileSidebar.style.display = 'flex'
-      }
-    })
+    const menu = document.querySelector(".sidebar");
+    const hamburger= document.querySelector(".hamburger");
 
+    function toggleMenu() {
+      if (menu.classList.contains("showMenu")) {
+        menu.classList.remove("showMenu");
+       
+      } else {
+        menu.classList.add("showMenu");
+        
+  }
+}
+
+    hamburger.addEventListener("click", toggleMenu);
+    
   }
   function btnEvents() {
     openModal();
