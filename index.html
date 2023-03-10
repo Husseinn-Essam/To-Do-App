@@ -4,10 +4,92 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/0e96e41433.js" crossorigin="anonymous"></script>
     <title>To Do App</title>
   <script defer src="main.js"></script></head>
   <body>
     <div class="container">
+      <div class="header">
+        <h1>To Do App<i class="fa-solid fa-check-double"></i></h1>
+        <div class="hamburger">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+      
+      <div class="sidebar">
+        <div class="inbox">
+          <h2>Inbox</h2>
+          <button class="project"><i class="fa-solid fa-house"></i>Home</button>
+          <button class="project"><i class="fa-sharp fa-solid fa-calendar-day"></i>Today</button>
+          <button class="project"><i class="fa-solid fa-calendar-week"></i>This week</button>
+        </div>
+        <div class="divider"></div>
+        <div class="projects">
+          <h2>Projects</h2>
+          <div class="project-list">
+           
+          </div>
+            
+          <button class="addProject">
+            <i class="fa-solid fa-plus"></i> Add Project
+          </button>
+          <div class="addProjectForm">
+            <input type="text" name="addProjectTitle" id="addProjectTitle" placeholder="Enter Project name">
+          <div class="projectActions">
+            <button class="submitProject">Submit</button>
+            <button class="cancel">Cancel</button>
+          </div>
+          </div>
+        </div>
+      </div>
+        <div class="list">
+          <button class="add-task"><i class="fa-solid fa-plus"></i>Add Task</button>
+          <div class="tasks">
+
+          </div>
+        </div>
+      
+      
+      </div>
+      <div class="modal">
+        <div class="modal-content">
+          <h1 class="modal-title">Add a Task</h1>
+         <form class="input">
+          <input type="text" name="title" id="title" placeholder="Title: Cook dinner" >
+          <textarea name="details-txt" id="details-txt" cols="30" rows="10" placeholder="Details: Prepare the noodles" ></textarea>
+          <div class="date-area">
+            <label for="task-date">Task Date</label>
+            <input type="date" name="task-date" id="task-date" >
+          </div>
+          <button class="submit">Add Task</button>
+          
+        </form>
+
+        </div>
+      </div>
+      <div class="editTask"> 
+        <div class="modal-content ">
+          <h1 class="modal-title">Edit a Task</h1>
+         <form class="input editModal" >
+          <input type="text" name="title" id="title" class="editedTitle" placeholder="Title: Cook dinner">
+          <textarea name="details-txt" id="details-txt"  class="editedDetails" cols="30" rows="10" placeholder="Details: Prepare the noodles"></textarea>
+          <div class="date-area">
+            <label for="task-date">Task Date</label>
+            <input type="date" name="task-date" id="task-date" class="editedDate">
+          </div>
+          <button class="editBtn">Edit Task</button>
+          
+         </form> 
+        </div>
+      </div>
+      
     </div>
+    <div class="detailsModal">
+      <div class="details-content">
+        <p class="taskDetails">None</p>
+      </div>
+    </div>
+
+
   </body>
 </html>
