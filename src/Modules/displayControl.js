@@ -103,10 +103,11 @@ const displayContoller = (function () {
 
   function submitTask() {
     const submitTaskBtn = document.querySelector('.submit');
-    
+    const modal = document.querySelector('.modal');
     submitTaskBtn.addEventListener('click', (e) => {
       e.preventDefault();
       addTaskToProject();
+      modal.style.display = 'none';
       toDolist.getTodayTasks();
       toDolist.getWeekTasks();
       renderProjectTasks();

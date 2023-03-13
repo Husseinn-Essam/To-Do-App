@@ -34,13 +34,13 @@ body{
         display: none;
         padding: 10px;
         cursor: pointer;  
-        z-index: 100;
+        z-index: 1;
         top: 1rem;
         right: 1rem;
         margin-right: 10px;
       }
-    h1{
-        padding: 20px;
+    h1{  
+        padding: 10px;
         i{
             margin-left:10px;
             font-size: 2.2rem;
@@ -174,12 +174,12 @@ body{
     .sidebar{
         position: fixed;
         transform: translateX(-100%);
-        //transition: transform 0.2s;
+        transition: transform 0.5s;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 99;
+        z-index: 0;
     }
     .list{
         grid-column: 1/-1;
