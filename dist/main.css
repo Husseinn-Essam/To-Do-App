@@ -125,7 +125,6 @@
 .modal-content {
   background-color: #f0eef1;
   width: 500px;
-  height: 500px;
   border-radius: 5px;
   display: flex;
   gap: 20px;
@@ -293,13 +292,13 @@ body {
   display: none;
   padding: 10px;
   cursor: pointer;
-  z-index: 100;
+  z-index: 1;
   top: 1rem;
   right: 1rem;
   margin-right: 10px;
 }
 .header h1 {
-  padding: 20px;
+  padding: 10px;
 }
 .header h1 i {
   margin-left: 10px;
@@ -420,11 +419,12 @@ body {
   .sidebar {
     position: fixed;
     transform: translateX(-100%);
+    transition: transform 0.5s;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 99;
+    z-index: 0;
   }
   .list {
     grid-column: 1/-1;
