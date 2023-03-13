@@ -4,7 +4,7 @@
   grid-column: 2;
   display: flex;
   flex-direction: column;
-  padding: 31px;
+  padding: 30px;
   gap: 10px;
 }
 .list .add-task {
