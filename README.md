@@ -1,10 +1,11 @@
 
-# Awesome ToDo App
+# ToDo App
 
-Welcome to the **Awesome ToDo App**! This application allows you to easily manage your tasks, assign dates to them, and categorize them based on the given date. You can also edit and delete tasks, add details to them, and create your own categories.
+Welcome to the **ToDo App**! This application allows you to easily manage your tasks, assign dates to them, and categorize them based on the given date. You can also edit and delete tasks, add details to them, and create your own categories.
 
 ## Demo
    👉 https://husseinn-essam.github.io/To-Do-App/
+
 ## Features
 
 - **Add Tasks**: Quickly add new tasks with a title and optional details.
@@ -14,3 +15,6 @@ Welcome to the **Awesome ToDo App**! This application allows you to easily manag
 - **Task Details**: Add additional information or notes to your tasks to provide context and reminders.
 - **Custom Categories**: Create your own categories to organize tasks according to your preferences and workflow.
 
+## To Do
+- Add a celebration event upon completing tasks
+- Add Sorting by priorty or date
