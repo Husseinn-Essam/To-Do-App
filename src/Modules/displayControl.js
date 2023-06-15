@@ -194,10 +194,15 @@ const displayContoller = (function () {
     const tasks = document.querySelector(".tasks")
     for(let i = 0;i<CreatedTasks.length;i++){
       deleteTaskBtn[i].addEventListener('click',()=>{
-        selectedProject.removeTask(selectedProject.tasks[i]);
-        tasks.removeChild(CreatedTasks[i]);
-        toDolist.getTodayTasks();
-        toDolist.getWeekTasks();
+        if(selectedProject == toDolist.today || selectedProject == toDolist.week){
+          alert('You can not delete from "Today" and "This Week", please delete from created project');
+        }
+        else{
+          selectedProject.removeTask(selectedProject.tasks[i]);
+          tasks.removeChild(CreatedTasks[i]);
+          toDolist.getTodayTasks();
+          toDolist.getWeekTasks();
+        }
       })
     }
   }
@@ -235,7 +240,7 @@ const displayContoller = (function () {
       editModal.style.display = 'none';
       toDolist.getTodayTasks();
       toDolist.getWeekTasks();
-      
+      toDolist.ez();
       renderProjectTasks();
     })
   }
